@@ -34,7 +34,7 @@ public class PlayerManager {
 	public Player getPlayer2() {
 		return player2;
 	}
-	
+
 	public List<Player> getPlayers() {
 		return Arrays.asList(player1, player2);
 	}

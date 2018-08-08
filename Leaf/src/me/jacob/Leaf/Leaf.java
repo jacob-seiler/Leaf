@@ -10,6 +10,14 @@ import me.jacob.Leaf.rooms.TitleScreen;
 
 public class Leaf {
 
+	// TODO cutscenes?
+	// TODO custom songs
+	// TODO art
+	// TODO settings
+	// TODO controller support?
+	// TODO game (notes that you hit at the correct time)
+	// TODO results screen
+
 	private static Game game;
 	private static JFrame frame;
 	private static KeyManager keyManager;

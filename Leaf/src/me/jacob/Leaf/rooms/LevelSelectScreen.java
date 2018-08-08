@@ -6,14 +6,14 @@ import me.jacob.Leaf.Leaf;
 
 public class LevelSelectScreen extends Room {
 
-    @Override
-    public void draw(Graphics2D g2) {
+	@Override
+	public void draw(Graphics2D g2) {
 
-    }
+	}
 
-    @Override
-    public void update(double delta) {
-	Leaf.getGame().setCurrentRoom(new BattleScreen());
-    }
+	@Override
+	public void update(double delta) {
+		Leaf.getGame().setCurrentRoom(new BattleScreen());
+	}
 
 }

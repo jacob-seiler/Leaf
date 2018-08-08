@@ -12,85 +12,85 @@ import me.jacob.Leaf.rooms.Room;
 @SuppressWarnings("serial")
 public class Game extends JPanel {
 
-    private static Room currentRoom;
+	private static Room currentRoom;
 
-    private PlayerManager playerManager;
-    
-    private DisplayManager displayManager;
+	private PlayerManager playerManager;
 
-    private static boolean isRunning;
-    
-    private int width;
-    private int height;
-    
-    public Game(int width, int height) {
-	this.width = width;
-	this.height = height;
-	
-	isRunning = true;
-	playerManager = new PlayerManager();
-	displayManager = new DisplayManager();
-    }
+	private DisplayManager displayManager;
 
-    public void gameLoop() {
-	long lastTime = System.nanoTime();
-	double amountOfTicks = 60.0;
-	double ns = 1000000000 / amountOfTicks;
-	double delta = 0;
-	long timer = System.currentTimeMillis();
-	int updates = 0;
-	int frames = 0;
+	private static boolean isRunning;
 
-	while (isRunning) {
-	    long now = System.nanoTime();
-	    delta += (now - lastTime) / ns;
-	    lastTime = now;
+	private int width;
+	private int height;
 
-	    while (delta >= 1) {
-		tick(delta * (60 / amountOfTicks));
-		updates++;
-		delta--;
-	    }
+	public Game(int width, int height) {
+		this.width = width;
+		this.height = height;
 
-	    render();
-	    frames++;
-
-	    if (System.currentTimeMillis() - timer > 1000) {
-		timer += 1000;
-		System.out.println("FPS: " + frames + " TICKS: " + updates);
-		frames = 0;
-		updates = 0;
-	    }
+		isRunning = true;
+		playerManager = new PlayerManager();
+		displayManager = new DisplayManager();
 	}
-    }
 
-    private void tick(double delta) {
-	getCurrentRoom().update(delta);
-    }
+	public void gameLoop() {
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		long timer = System.currentTimeMillis();
+		int updates = 0;
+		int frames = 0;
 
-    private void render() {
-	repaint();
-    }
+		while (isRunning) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
 
-    // OTHER FUNCTIONS
+			while (delta >= 1) {
+				tick(delta * (60 / amountOfTicks));
+				updates++;
+				delta--;
+			}
 
-    public Room getCurrentRoom() {
-	return currentRoom;
-    }
+			render();
+			frames++;
 
-    public void setCurrentRoom(Room room) {
-	currentRoom = room;
-    }
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				System.out.println("FPS: " + frames + " TICKS: " + updates);
+				frames = 0;
+				updates = 0;
+			}
+		}
+	}
 
-    public PlayerManager getPlayerManager() {
-	return playerManager;
-    }
+	private void tick(double delta) {
+		getCurrentRoom().update(delta);
+	}
 
-    @Override
-    public void paintComponent(Graphics g) {
-	Graphics2D g2 = (Graphics2D) g;
-	displayManager.scaleScreen(g2, width, height);
-	currentRoom.draw(g2);
-	displayManager.drawBars(g2, width, height);
-    }
+	private void render() {
+		repaint();
+	}
+
+	// OTHER FUNCTIONS
+
+	public Room getCurrentRoom() {
+		return currentRoom;
+	}
+
+	public void setCurrentRoom(Room room) {
+		currentRoom = room;
+	}
+
+	public PlayerManager getPlayerManager() {
+		return playerManager;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		displayManager.scaleScreen(g2, width, height);
+		currentRoom.draw(g2);
+		displayManager.drawBars(g2, width, height);
+	}
 }
