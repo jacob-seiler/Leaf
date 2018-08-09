@@ -5,8 +5,9 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
-import me.jacob.Leaf.managers.KeyManager;
-import me.jacob.Leaf.rooms.TitleScreen;
+import me.jacob.Leaf.engine.Game;
+import me.jacob.Leaf.engine.KeyManager;
+import me.jacob.Leaf.game.rooms.TitleScreen;
 
 public class Leaf {
 
